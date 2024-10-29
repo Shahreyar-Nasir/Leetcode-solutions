@@ -7,7 +7,7 @@ public:
         for(int i=0; i<nums.size()-1; i++){
            newnums.push_back((nums[i] + nums[i+1]) % 10);
         }
-       int ans =  triangularSum(newnums);
-       return ans;
+       return  triangularSum(newnums);
+       
     }
 };
