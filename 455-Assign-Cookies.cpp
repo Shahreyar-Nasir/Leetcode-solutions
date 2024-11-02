@@ -5,7 +5,7 @@ public:
         sort(s.begin(), s.end());
         int i=0, j=0;
         int count =0;
-        while(j<s.size()&& i<g.size()){
+        while(j!=s.size()&& i!=g.size()){
             if(s[j]>=g[i]) {
                 count++;
                 i++;
