@@ -16,21 +16,19 @@
 16
 17         ListNode* fast = head;
 18         ListNode* slow = head;
-19         ListNode* temp = head;
-20
-21         while(fast != nullptr  && fast->next != nullptr){
-22            fast = fast->next->next;
-23            slow = slow->next;
-24         }
-25
-26         while(temp->next != slow){
-27           temp = temp->next;
-28         }
-29
-30         temp->next = temp->next->next;
-31         delete slow;
+19    
+20         //skip one time
+21         fast = fast->next->next;
+22        
+23         while(fast != nullptr  && fast->next != nullptr){
+24            fast = fast->next->next;
+25            slow = slow->next;
+26         }
+27
+28          ListNode* temp = slow->next;
+29          slow->next = slow->next->next;
+30          delete temp;
+31          return head;
 32
-33         return head;
-34
-35    }
-36};
+33    }
+34};
