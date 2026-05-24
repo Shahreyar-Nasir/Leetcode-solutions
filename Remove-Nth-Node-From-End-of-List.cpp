@@ -11,38 +11,30 @@
 11class Solution {
 12public:
 13    ListNode* removeNthFromEnd(ListNode* head, int n) {
-14    int count = 0;
-15    ListNode* temp = head;
-16
-17    // Count nodes
-18    while (temp != nullptr) {
-19        count++;
-20        temp = temp->next;
-21    }
-22
-23    int targnode = count - n;
-24
-25    // Dummy node
-26    ListNode* dummy = new ListNode(0);
-27    dummy->next = head;
-28
-29    ListNode* temp2 = dummy;
-30
-31    // Move to node before target
-32    for (int i = 0; i < targnode; i++) {
-33        temp2 = temp2->next;
-34    }
-35
-36    // Node to delete
-37    ListNode* delNode = temp2->next;
+14        ListNode* fast = head;
+15        ListNode* slow = head;
+16        for(int i=0 ; i<n; i++){
+17            fast = fast->next;
+18        }
+19        if(fast == nullptr){
+20        ListNode* delNode = head;
+21        head = head->next;
+22        delete delNode;
+23        return head;
+24       }
+25       
+26        while(fast->next !=  nullptr){
+27             fast = fast->next;
+28             slow = slow->next;
+29             
+30        }
+31      
+32        ListNode* delNode = slow->next;
+33
+34        slow->next = slow->next->next;
+35        delete delNode;
+36
+37        return head;
 38
-39    // Remove link
-40    temp2->next = temp2->next->next;
-41
-42    // Delete node
-43    delete delNode;
-44
-45    return dummy->next;
-46
-47    }
-48};
+39    }
+40};
